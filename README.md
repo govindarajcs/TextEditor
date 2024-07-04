@@ -54,7 +54,7 @@ File D:\Workspace-STS\TextEditor\src\com\fortify\texteditor\command\resource\inp
 editor>>in
 Command not supported.Please enter any one of the following commands
 1. ins <pos>
-2. del
+2. del <pos>
 3.list
 4.save
 5.quit

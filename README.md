@@ -1,6 +1,6 @@
 ## Text Editor
 
-##Problem Statement 
+## Problem Statement 
 
 Write a line-oriented text editor that reads a text file and allows basic editing commands
  

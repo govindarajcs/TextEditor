@@ -32,11 +32,11 @@ public class TextEditorDeleteCommand implements Command {
 		try {
 			lock.lock();
 			this.editor.delAtPosition(position);
+			System.out.println("Line at "+position+" is removed from the file "+editor.getFile().getName()+" successfully. Please save the changes in the file");
 		} catch(TextEditorException e) {
-			throw new EditorException(e.getLocalizedMessage());
+			throw new TextEditorException(e.getLocalizedMessage());
 		} finally {
 			lock.unlock();
 		}
 	}
-
 }

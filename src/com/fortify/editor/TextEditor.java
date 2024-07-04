@@ -10,9 +10,14 @@ import com.fortify.editor.exception.TextEditorException;
 
 public class TextEditor implements Editor {
 	
-	List<String> inputFileString;
-	File inputFile;
+	private List<String> inputFileString;
+	private File inputFile;
 	
+	
+
+	public List<String> getInputFileString() {
+		return inputFileString;
+	}
 
 	public File getFile() {
 		return inputFile;
@@ -38,11 +43,10 @@ public class TextEditor implements Editor {
 		 * If the user wants to enter the string in the last line
 		 */
 		try {
-			if(position == 0|| position+1>inputFileString.size()) {
+			if(position == 0|| position>inputFileString.size()+1) {
 				throw new TextEditorException("Index position of the file is not valid. Try between 1 and last line of the file");
 			}
 			inputFileString.add(position-1, inputLine);
-			System.out.println("Line \""+inputLine+"\" is added successfully at position "+position+" in the file "+inputFile.getName());
 		} catch(TextEditorException e) {
 			throw new TextEditorException(e.getMessage());
 		} catch(Exception e) {
@@ -83,6 +87,7 @@ public class TextEditor implements Editor {
 		try {
 			Files.deleteIfExists(inputFile.toPath());
 			Files.write(inputFile.toPath(), inputFileString);
+			inputFileString = Files.readAllLines(inputFile.toPath());
 		} catch (IOException e) {
 			throw new TextEditorException("Error in saving the file due to "+e.getLocalizedMessage());
 		}

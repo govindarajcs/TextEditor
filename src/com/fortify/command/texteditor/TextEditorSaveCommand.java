@@ -11,6 +11,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.fortify.command.Command;
 import com.fortify.editor.Editor;
+import com.fortify.editor.exception.EditorException;
+import com.fortify.editor.exception.TextEditorException;
 
 public class TextEditorSaveCommand implements Command {
 
@@ -23,7 +25,7 @@ public class TextEditorSaveCommand implements Command {
 	}
 	
 	@Override
-	public void execute() {
+	public void execute() throws EditorException {
 		
 		try {
 			writeLock.lock();
@@ -31,7 +33,7 @@ public class TextEditorSaveCommand implements Command {
 			System.out.println("File "+editor.getFile()+" saved successfully");
 			
 		} catch(Exception err) {
-			System.out.println("Error in saving the file "+editor.getFile().getName());
+			throw new TextEditorException("Error in saving the file "+editor.getFile().getName());
 		} finally {
 			writeLock.unlock();
 		}

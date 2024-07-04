@@ -6,6 +6,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import com.fortify.command.Command;
 import com.fortify.editor.Editor;
 import com.fortify.editor.exception.EditorException;
+import com.fortify.editor.exception.TextEditorException;
 
 /**
  * @author govin
@@ -33,9 +34,9 @@ public class TextEditorInsertCommand implements Command {
 		try {
 			lock.lock();
 			editor.addAtPosition(input, position);
-			System.out.println("Line at"+position+" is removed from the file "+editor.getFile().getName()+" successfully. Please save the changes in the file");
+			System.out.println("Line \""+input+"\" at "+position+" is added to the file "+editor.getFile().getName()+" successfully. Please save the changes in the file");
 		} catch(Exception err) {
-			throw new EditorException(err);
+			throw new TextEditorException(err);
 		} finally {
 			lock.unlock();
 		}

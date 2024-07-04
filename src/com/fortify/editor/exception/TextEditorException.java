@@ -10,7 +10,7 @@ public class TextEditorException extends EditorException {
 		this.message = message;
 	}
 
-	public TextEditorException(TextEditorException e) {
+	public TextEditorException(Exception e) {
 		super(e);
 	}
 

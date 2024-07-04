@@ -6,6 +6,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import com.fortify.command.Command;
 import com.fortify.editor.Editor;
 import com.fortify.editor.exception.EditorException;
+import com.fortify.editor.exception.TextEditorException;
 
 /**
  * @author govin
@@ -33,7 +34,7 @@ public class TextEditorListCommand implements Command {
 				count++;
 			}
 		} catch(Exception err) {
-			throw new EditorException("Error in reading the file: "+editor.getFile().getName()+ "due to "+err.getLocalizedMessage());
+			throw new TextEditorException("Error in reading the file: "+editor.getFile().getName()+ "due to "+err.getLocalizedMessage());
 		} finally {
 			readLock.unlock();
 		}
